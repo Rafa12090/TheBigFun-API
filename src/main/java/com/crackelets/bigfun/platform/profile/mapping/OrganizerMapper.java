@@ -18,10 +18,6 @@ public class OrganizerMapper implements Serializable {
     @Autowired //With this I can do dependency injection
     private EnhancedModelMapper mapper;
 
-    public OrganizerMapper(EnhancedModelMapper mapper){
-        this.mapper=mapper;
-    }
-
     public OrganizerResource toResource(Organizer model){
 
         return mapper.map(model,OrganizerResource.class);
