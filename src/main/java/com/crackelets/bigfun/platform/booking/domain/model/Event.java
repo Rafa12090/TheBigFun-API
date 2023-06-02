@@ -1,6 +1,7 @@
 package com.crackelets.bigfun.platform.booking.domain.model;
 
 import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
+import com.crackelets.bigfun.platform.profile.domain.model.Organizer;
 import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -27,4 +28,9 @@ public class Event extends AuditModel {
     @JoinColumn(name = "skill_id", nullable = false)
     @JsonIgnore
     private Attendee attendee;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "organizer_id", nullable = false)
+    @JsonIgnore
+    private Organizer organizer;
 }
