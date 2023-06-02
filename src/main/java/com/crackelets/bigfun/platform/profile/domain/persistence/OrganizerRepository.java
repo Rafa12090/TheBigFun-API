@@ -11,9 +11,7 @@ import java.util.Optional;
 public interface OrganizerRepository extends JpaRepository <Organizer,Long> {
 
     //I make the queries with the attributes I want
-
-    Optional<Organizer> findByName(String name);
-
+    Organizer findByName(String name);
     Organizer findByUserName(String userName);
     Organizer findByEmail(String email);
 

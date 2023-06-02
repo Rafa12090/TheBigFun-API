@@ -17,7 +17,7 @@ public interface OrganizerService {
 
     Organizer create(Organizer organizer);
 
-    Organizer update(Long id,Organizer organizer);
+    Organizer update(Long organizerId,Organizer organizer);
 
     ResponseEntity<?> delete (Long organizerId);
 
