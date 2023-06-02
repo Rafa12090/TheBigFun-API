@@ -24,5 +24,8 @@ public interface OrganizerService {
     Organizer addEventToOrganizer(Long organizerId, String eventName);
 
     //ver  para el pago!!!!!!!!
+    Organizer addPayToOrganizer(Long organizerId, Long paymentId);
+
+
 
 }

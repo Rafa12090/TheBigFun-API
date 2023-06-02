@@ -1,6 +1,7 @@
 package com.crackelets.bigfun.platform.profile.domain.model;
 
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
+import com.crackelets.bigfun.platform.payment.domain.model.Payment;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -61,7 +62,21 @@ public class Organizer {
         return this;
     }
 
-    //private PaymentList paymentList;  ->queda pendiente crear instancia en pay
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="organizer")
+    private Set<Payment> payments = new HashSet<>();
 
+    //business rule
+    public Organizer addPayment(Long paymentId) {
+
+        if (payments == null) {
+            payments = new HashSet<>();
+        }
+
+        //add payment to organizer
+        payments.add(new Payment()
+                .withId(paymentId)
+                .withOrganizer(this));
+        return this;
+    }
 
 }
