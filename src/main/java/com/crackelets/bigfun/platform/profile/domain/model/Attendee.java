@@ -1,6 +1,7 @@
 package com.crackelets.bigfun.platform.profile.domain.model;
 
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,10 +40,14 @@ public class Attendee {
     @Size(max = 255)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="attendee")
-    private Set<Event> events = new HashSet<>();
 
-    //private Set<Payment> payments = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "attendee_event",
+            joinColumns = @JoinColumn(name = "attendee_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private Set<Event> events = new HashSet<>();
 
     public Attendee addEvent(String eventName){
         if(events==null){
