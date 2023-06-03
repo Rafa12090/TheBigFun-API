@@ -60,7 +60,6 @@ public class Event extends AuditModel {
 
 
 
-
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
     @JsonIgnore
