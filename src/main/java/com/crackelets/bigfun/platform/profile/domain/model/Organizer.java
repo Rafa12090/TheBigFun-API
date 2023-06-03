@@ -2,6 +2,7 @@ package com.crackelets.bigfun.platform.profile.domain.model;
 
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
 import com.crackelets.bigfun.platform.payment.domain.model.Payment;
+import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name = "organizers")
 
-public class Organizer {
+public class Organizer extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Autogenerate value
