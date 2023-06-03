@@ -23,5 +23,5 @@ public interface AttendeeService {
 
     Attendee addEventToAttendee(Long attendeeId, String eventName);
 
-
+    //List<Attendee> getAllByEventId(Long eventId);
 }
