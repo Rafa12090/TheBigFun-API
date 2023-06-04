@@ -29,17 +29,17 @@ public class AttendeesController {
     }
 
     @GetMapping("{attendeeId}")
-    public AttendeeResource getStudentById(@PathVariable Long attendeeId) {
+    public AttendeeResource getAttendeeById(@PathVariable Long attendeeId) {
         return mapper.toResource(attendeeService.getById(attendeeId));
     }
 
     @PostMapping  // To create
-    public ResponseEntity<AttendeeResource> createStudent(CreateAttendeeResource resource) {
+    public ResponseEntity<AttendeeResource> createAttendee(CreateAttendeeResource resource) {
         return new ResponseEntity<>(mapper.toResource(attendeeService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
     @PutMapping("{attendeeId}")  // Update
-    public AttendeeResource updateStudent(@PathVariable Long attendeeId, @RequestBody UpdateAttendeeResource resource) {
+    public AttendeeResource updateAttendee(@PathVariable Long attendeeId, @RequestBody UpdateAttendeeResource resource) {
         return mapper.toResource(attendeeService.update(attendeeId, mapper.toModel(resource)));
     }
 
