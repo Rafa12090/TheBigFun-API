@@ -1,4 +1,4 @@
-package com.crackelets.bigfun.platform.booking.persistence;
+package com.crackelets.bigfun.platform.profile.domain.persistence;
 
 import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
 import org.springframework.data.jpa.repository.JpaRepository;
