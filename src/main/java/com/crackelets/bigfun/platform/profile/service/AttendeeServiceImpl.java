@@ -1,7 +1,7 @@
 package com.crackelets.bigfun.platform.profile.service;
 
 import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
-import com.crackelets.bigfun.platform.booking.persistence.AttendeeRepository;
+import com.crackelets.bigfun.platform.profile.domain.persistence.AttendeeRepository;
 import com.crackelets.bigfun.platform.profile.domain.service.AttendeeService;
 import com.crackelets.bigfun.platform.shared.exception.ResourceNotFoundException;
 import com.crackelets.bigfun.platform.shared.exception.ResourceValidationException;
