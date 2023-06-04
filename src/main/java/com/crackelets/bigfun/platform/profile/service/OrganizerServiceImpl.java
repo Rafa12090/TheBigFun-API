@@ -97,9 +97,10 @@ public class OrganizerServiceImpl implements OrganizerService {
         if (organizerWithUserName != null && !organizerWithUserName.getId().equals(organizer.getId())) {
             throw new ResourceValidationException(ENTITY, "An organizer with tne same user name alredy exists");
         }
-        if (organizerWithEmail != null && !organizerWithEmail.getId().equals(organizer.getId())) {
+
+        /*if (organizerWithEmail != null && !organizerWithEmail.getId().equals(organizer.getId())) {
             throw new ResourceValidationException(ENTITY, "An organizer with tne same email alredy exists");
-        }
+        }*/
 
         //Perform creation operation
 
