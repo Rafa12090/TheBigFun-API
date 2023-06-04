@@ -34,7 +34,7 @@ public class AttendeesController {
     }
 
     @PostMapping  // To create
-    public ResponseEntity<AttendeeResource> createAttendee(CreateAttendeeResource resource) {
+    public ResponseEntity<AttendeeResource> createAttendee(@RequestBody CreateAttendeeResource resource) {
         return new ResponseEntity<>(mapper.toResource(attendeeService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
