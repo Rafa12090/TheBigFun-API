@@ -36,6 +36,7 @@ public class OrganizersController {
 
     @PostMapping
     public ResponseEntity<OrganizerResource> createOrganizer(@RequestBody CreateOrganizerResource resource){
+
         return new ResponseEntity<>(mapper.toResource(organizerService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
