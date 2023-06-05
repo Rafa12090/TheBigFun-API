@@ -15,9 +15,9 @@ import java.util.List;
 
 public class EventMapper implements Serializable {
 
-    //Falta el @Autowired
-    //@Autowired
-    EnhancedModelMapper mapper;
+
+    @Autowired
+    private EnhancedModelMapper mapper;
 
     public EventResource toResource(Event model){return mapper.map(model, EventResource.class);}
 

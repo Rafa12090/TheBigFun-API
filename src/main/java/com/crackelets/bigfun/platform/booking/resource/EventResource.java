@@ -19,7 +19,6 @@ public class EventResource {
     private int capacity;
     private String image;
     private Date date;
-    private Time hour;
     private int cost;
     private String district;
 

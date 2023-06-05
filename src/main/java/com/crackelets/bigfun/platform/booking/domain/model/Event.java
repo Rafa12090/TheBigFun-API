@@ -31,10 +31,10 @@ public class Event extends AuditModel {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    @Size(min = 10)
+    @Size(min = 5)
     private String name;
-    @Size(max =255)
-    @Size(min = 100)
+    @Size(max =240)
+    @Size(min = 20)
     private String address;
 
     @NotNull
@@ -45,13 +45,12 @@ public class Event extends AuditModel {
 
     @NotNull
     private Date date;
-    @NotNull
-    private Time hour;
+
     @NotNull
     private int cost;
 
     @Size(max = 50)
-    @Size(min =20)
+    @Size(min =5)
     @NotNull
     private String district;
 
@@ -62,8 +61,8 @@ public class Event extends AuditModel {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "organizer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "organizer_id")
     @JsonIgnore
     private Organizer organizer;
 

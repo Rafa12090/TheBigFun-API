@@ -37,7 +37,7 @@ public class EventsController {
     }
 
     @PostMapping
-    public ResponseEntity<EventResource> createEvent(CreateEventResource resource){
+    public ResponseEntity<EventResource> createEvent(@RequestBody CreateEventResource resource){
         return new ResponseEntity<>(mapper.toResource(eventService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 

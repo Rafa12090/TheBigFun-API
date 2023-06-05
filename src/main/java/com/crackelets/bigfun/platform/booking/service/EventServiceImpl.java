@@ -80,7 +80,6 @@ public class EventServiceImpl implements EventService {
                 eventToUpdate.withName(event.getName())
                         .withDate(event.getDate())
                         .withAddress(event.getAddress())
-                        .withHour(event.getHour())
                         .withCost(event.getCost())
                         .withImage(event.getImage())
                         .withCapacity(event.getCapacity())))
