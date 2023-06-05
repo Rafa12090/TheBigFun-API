@@ -33,18 +33,18 @@ public class Payment extends AuditModel {
     @Column(unique = true)
     private String qrImg;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "organizer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "organizer_id")
     @JsonIgnore
     private Organizer organizer;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "event_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id")
     @JsonIgnore
     private Event event;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "attendee_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "attendee_id")
     @JsonIgnore
     private Attendee attendee;
 }
