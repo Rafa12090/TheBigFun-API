@@ -33,4 +33,5 @@ public class Event extends AuditModel {
     @JoinColumn(name = "organizer_id", nullable = false)
     @JsonIgnore
     private Organizer organizer;
+
 }

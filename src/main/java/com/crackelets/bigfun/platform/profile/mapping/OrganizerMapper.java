@@ -16,11 +16,7 @@ import java.util.List;
 public class OrganizerMapper implements Serializable {
 
     @Autowired //With this I can do dependency injection
-    private EnhancedModelMapper mapper;
-
-    public OrganizerMapper(EnhancedModelMapper mapper){
-        this.mapper=mapper;
-    }
+    EnhancedModelMapper mapper;
 
     public OrganizerResource toResource(Organizer model){
 
@@ -28,10 +24,12 @@ public class OrganizerMapper implements Serializable {
     }
 
     public Organizer toModel(CreateOrganizerResource resource){
+
         return mapper.map(resource,Organizer.class);
     }
 
     public Organizer toModel(UpdateOrganizerResource resource){
+
         return mapper.map(resource,Organizer.class);
     }
 
