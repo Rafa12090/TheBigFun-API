@@ -27,12 +27,14 @@ public class Event extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
     @Size(min = 5)
     private String name;
+
     @Size(max =240)
     @Size(min = 20)
     private String address;
@@ -54,27 +56,16 @@ public class Event extends AuditModel {
     @NotNull
     private String district;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "events")
-    private Set<Attendee> attendees = new HashSet<>();
+
+    @NotNull
+    private Long organizer_id;
 
 
+    @OneToMany
+    private Set<EventAttendee> attendees;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "organizer_id")
-    @JsonIgnore
-    private Organizer organizer;
-
-    public Event withAttendee(Attendee attendee) {
-
-        if (attendees == null){
-            attendees = new HashSet<>();
-        }
-
-        attendees.add(attendee);
-        return this;
-
+    public void addAttendee(Long attendeeId, Event event){
+        this.attendees.add(new EventAttendee(this, attendeeId));
     }
 
 
