@@ -31,7 +31,7 @@ private final PaymentMapper mapper;
         return mapper.toResource(paymentService.getById(paymentId));
     }
     @PostMapping
-    public ResponseEntity<PaymentResource> createPayment(CreatePaymentResource resource){
+    public ResponseEntity<PaymentResource> createPayment(@RequestBody CreatePaymentResource resource){
         return  new ResponseEntity<>(mapper.toResource(paymentService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
     @DeleteMapping("{paymentId}")

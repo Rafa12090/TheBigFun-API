@@ -17,12 +17,15 @@ public interface OrganizerService {
 
     Organizer create(Organizer organizer);
 
-    Organizer update(Long id,Organizer organizer);
+    Organizer update(Long organizerId,Organizer organizer);
 
     ResponseEntity<?> delete (Long organizerId);
 
     Organizer addEventToOrganizer(Long organizerId, String eventName);
 
     //ver  para el pago!!!!!!!!
+    Organizer addPayToOrganizer(Long organizerId, Long paymentId);
+
+
 
 }

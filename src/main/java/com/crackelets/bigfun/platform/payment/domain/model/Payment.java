@@ -1,11 +1,7 @@
 package com.crackelets.bigfun.platform.payment.domain.model;
 
 
-import com.crackelets.bigfun.platform.booking.domain.model.Event;
-import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
-import com.crackelets.bigfun.platform.profile.domain.model.Organizer;
 import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,18 +29,13 @@ public class Payment extends AuditModel {
     @Column(unique = true)
     private String qrImg;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "organizer_id", nullable = false)
-    @JsonIgnore
-    private Organizer organizer;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "event_id", nullable = false)
-    @JsonIgnore
-    private Event event;
+    @NotNull
+    private Long organizerId;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "attendee_id", nullable = false)
-    @JsonIgnore
-    private Attendee attendee;
+    @NotNull
+    private Long eventId;
+
+    @NotNull
+    private Long attendeeId;
 }
