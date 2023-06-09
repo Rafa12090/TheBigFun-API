@@ -1,5 +1,6 @@
 package com.crackelets.bigfun.platform.profile.api.rest;
 
+import com.crackelets.bigfun.platform.booking.mapping.EventMapper;
 import com.crackelets.bigfun.platform.booking.resource.EventResource;
 import com.crackelets.bigfun.platform.profile.domain.service.EventFilterService;
 import com.crackelets.bigfun.platform.profile.domain.service.OrganizerService;
@@ -18,44 +19,44 @@ import org.springframework.web.bind.annotation.*;
 public class OrganizersController {
 
     private OrganizerService organizerService;
-    private OrganizerMapper mapper;
-
+    private OrganizerMapper organizerMapper;
+    private EventMapper eventMapper;
     private EventFilterService eventFilterService;
 
 
-    public OrganizersController(OrganizerService organizerService, OrganizerMapper mapper) {
+    public OrganizersController(OrganizerService organizerService, OrganizerMapper mapper1, EventMapper mapper2) {
         this.organizerService = organizerService;
-        this.mapper = mapper;
+        this.organizerMapper = mapper1;
+        this.eventMapper = mapper2;
     }
 
     @GetMapping
     public Page<OrganizerResource> getAllOrganizers(Pageable pageable){
-        return mapper.modelListPage(organizerService.getAll(),pageable);
+        return organizerMapper.modelListPage(organizerService.getAll(),pageable);
     }
 
-    @GetMapping("{organizerId}")
+    @GetMapping("organizer/{organizerId}")
     public Page<EventResource> getAllEventsByOrganizerId(Pageable pageable, @PathVariable Long organizerId){
-        return mapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
-
+        return eventMapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
     }
 
 
     @GetMapping("{organizerId}")          //"PathVariable": reconoce la variable de esta linea
     public OrganizerResource getOrganizerById(@PathVariable Long organizerId){
-        return mapper.toResource(organizerService.getById(organizerId));
+        return organizerMapper.toResource(organizerService.getById(organizerId));
     }
 
 
     @PostMapping
     public ResponseEntity<OrganizerResource> createOrganizer(@RequestBody CreateOrganizerResource resource){
 
-        return new ResponseEntity<>(mapper.toResource(organizerService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(organizerMapper.toResource(organizerService.create(organizerMapper.toModel(resource))), HttpStatus.CREATED);
     }
 
     @PutMapping("{organizerId}")
     public OrganizerResource updateOrganizer(@PathVariable Long organizerId,
                                          @RequestBody UpdateOrganizerResource resource){
-        return mapper.toResource(organizerService.update(organizerId,mapper.toModel(resource)));
+        return organizerMapper.toResource(organizerService.update(organizerId,organizerMapper.toModel(resource)));
     }
 
     @DeleteMapping("{organizerId}")

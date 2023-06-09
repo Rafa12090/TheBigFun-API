@@ -28,6 +28,8 @@ public class OrganizerMapper implements Serializable {
         return mapper.map(resource,Organizer.class);
     }
 
+
+
     public Organizer toModel(UpdateOrganizerResource resource){
 
         return mapper.map(resource,Organizer.class);
