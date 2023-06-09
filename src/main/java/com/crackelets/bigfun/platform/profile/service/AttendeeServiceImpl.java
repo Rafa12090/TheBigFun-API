@@ -96,10 +96,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     @Override
     public Attendee addEventToAttendee(Long attendeeId, String eventName) {
 
-        return attendeeRepository.findById(attendeeId).map(attendee -> {
-            return attendeeRepository.save(attendee.addEvent(eventName));
-        })
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY,attendeeId));
+        return null;
 
     }
 }

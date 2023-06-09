@@ -126,11 +126,13 @@ public class OrganizerServiceImpl implements OrganizerService {
     //agrega event, lo valida y lo agrega a la coleccion de events de dicho organizer
     //por ultimo retorna el propio organizer
     public Organizer addEventToOrganizer(Long organizerId, String eventName) {
+        /*
 
         return organizerRepository.findById(organizerId).map(organizer->{
                     return organizerRepository.save(organizer.addEvent(eventName));
                 })
-                .orElseThrow(()->new ResourceNotFoundException(ENTITY,organizerId));
+                .orElseThrow(()->new ResourceNotFoundException(ENTITY,organizerId));*/
+        return null;
 
     }
 
@@ -138,10 +140,14 @@ public class OrganizerServiceImpl implements OrganizerService {
     //agrega pay, lo valida y lo agrega a la coleccion de pays de dicho organizer
     //por ultimo retorna el propio organizer
     public Organizer addPayToOrganizer(Long organizerId, Long paymentId) {
+        /*
 
         return organizerRepository.findById(organizerId).map(organizer->{
                     return organizerRepository.save(organizer.addPayment(paymentId));
                 })
                 .orElseThrow(()->new ResourceNotFoundException(ENTITY,organizerId));
+                */
+         return null;
     }
+
 }

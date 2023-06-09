@@ -95,4 +95,15 @@ public class EventServiceImpl implements EventService {
         })
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, eventId));
     }
+
+    @Override
+    public List<Event> getAllByOrganizerId(Long id) {
+        return eventRepository.findAllByOrganizerId(id);
+    }
+
+
+    @Override
+    public Event addAttendeeToEvent(Long eventId, Long eventAttendeeId) {
+        return null;
+    }
 }

@@ -2,7 +2,6 @@ package com.crackelets.bigfun.platform.booking.resource;
 
 import lombok.*;
 
-import java.sql.Time;
 import java.util.Date;
 
 @Getter
@@ -21,6 +20,7 @@ public class EventResource {
     private Date date;
     private int cost;
     private String district;
+    private Long organizerId;
 
 
 

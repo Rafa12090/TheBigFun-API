@@ -47,5 +47,10 @@ public class CreateEventResource {
     @NotNull
     private String district;
 
+    @NotNull
+    private Long organizerId;
+
+
+
 
 }

@@ -1,3 +1,4 @@
+
 package com.crackelets.bigfun.platform.booking.domain.model;
 
 import jakarta.persistence.*;
@@ -6,7 +7,7 @@ import lombok.Generated;
 import lombok.NoArgsConstructor;
 import lombok.With;
 
-
+@AllArgsConstructor
 @NoArgsConstructor
 @With
 @Entity
@@ -19,7 +20,6 @@ public class EventAttendee {
     @ManyToOne
     private Event event;
     private Long attendeeId;
-
 
     public EventAttendee(Event event, Long attendeeId) {
         this.event = event;

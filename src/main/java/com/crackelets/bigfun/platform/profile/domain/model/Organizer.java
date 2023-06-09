@@ -46,6 +46,7 @@ public class Organizer extends AuditModel {
     //Relationships
 
     //private EventList eventList;
+    /*
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="organizer")
     private Set<Event> events = new HashSet<>();
 
@@ -78,6 +79,6 @@ public class Organizer extends AuditModel {
                 .withId(paymentId)
                 .withOrganizer(this));
         return this;
-    }
+    }*/
 
 }
