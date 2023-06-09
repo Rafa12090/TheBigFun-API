@@ -47,6 +47,11 @@ public class EventsController {
         return mapper.toResource(eventService.update(eventId, mapper.toModel(resource)));
     }
 
+    @GetMapping("org/{organizerId}")
+    public Page<EventResource> getAllEventsByOrginerId(Pageable pageable,@PathVariable Long organizerId){
+        return mapper.modelListPage(eventService.getAllByOrganizerId(organizerId), pageable);
+    }
+
     @DeleteMapping("{eventId}")
     public ResponseEntity<?> deleteEvent(@PathVariable Long eventId){ return eventService.delete(eventId);}
 

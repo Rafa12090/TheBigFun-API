@@ -23,6 +23,7 @@ public class CreateEventResource {
     @Size(max= 50)
     @Size(min = 5)
     @Column(unique = true)
+
     private String name;
 
     @Size(max =240)

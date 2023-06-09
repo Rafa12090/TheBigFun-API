@@ -13,4 +13,6 @@ public class MappingConfiguration {
     public AttendeeMapper attendeeMapper() {
         return new AttendeeMapper();
     }
+
+
 }

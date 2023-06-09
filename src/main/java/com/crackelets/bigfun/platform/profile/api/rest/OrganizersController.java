@@ -21,13 +21,19 @@ public class OrganizersController {
     private OrganizerService organizerService;
     private OrganizerMapper organizerMapper;
     private EventMapper eventMapper;
+
+
+
     private EventFilterService eventFilterService;
+
+
 
 
     public OrganizersController(OrganizerService organizerService, OrganizerMapper mapper1, EventMapper mapper2) {
         this.organizerService = organizerService;
         this.organizerMapper = mapper1;
         this.eventMapper = mapper2;
+
     }
 
     @GetMapping
@@ -37,6 +43,7 @@ public class OrganizersController {
 
     @GetMapping("organizer/{organizerId}")
     public Page<EventResource> getAllEventsByOrganizerId(Pageable pageable, @PathVariable Long organizerId){
+
         return eventMapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
     }
 
