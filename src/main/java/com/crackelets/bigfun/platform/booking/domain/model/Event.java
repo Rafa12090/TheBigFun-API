@@ -58,12 +58,15 @@ public class Event extends AuditModel {
     @NotNull
     private Long organizerId;
 
-/*
+
+
+
+
     @OneToMany
     private Set<EventAttendee> attendees;
 
     public void addAttendee(Long attendeeId, Event event){
         this.attendees.add(new EventAttendee(this, attendeeId));
     }
-*/
+
 }

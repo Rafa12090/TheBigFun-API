@@ -1,5 +1,7 @@
 package com.crackelets.bigfun.platform.profile.api.rest;
 
+import com.crackelets.bigfun.platform.booking.resource.EventResource;
+import com.crackelets.bigfun.platform.profile.domain.service.EventFilterService;
 import com.crackelets.bigfun.platform.profile.domain.service.OrganizerService;
 import com.crackelets.bigfun.platform.profile.mapping.OrganizerMapper;
 import com.crackelets.bigfun.platform.profile.resource.CreateOrganizerResource;
@@ -18,6 +20,8 @@ public class OrganizersController {
     private OrganizerService organizerService;
     private OrganizerMapper mapper;
 
+    private EventFilterService eventFilterService;
+
 
     public OrganizersController(OrganizerService organizerService, OrganizerMapper mapper) {
         this.organizerService = organizerService;
@@ -29,10 +33,18 @@ public class OrganizersController {
         return mapper.modelListPage(organizerService.getAll(),pageable);
     }
 
+    @GetMapping("{organizerId}")
+    public Page<EventResource> getAllEventsByOrganizerId(Pageable pageable, @PathVariable Long organizerId){
+        return mapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
+
+    }
+
+
     @GetMapping("{organizerId}")          //"PathVariable": reconoce la variable de esta linea
     public OrganizerResource getOrganizerById(@PathVariable Long organizerId){
         return mapper.toResource(organizerService.getById(organizerId));
     }
+
 
     @PostMapping
     public ResponseEntity<OrganizerResource> createOrganizer(@RequestBody CreateOrganizerResource resource){

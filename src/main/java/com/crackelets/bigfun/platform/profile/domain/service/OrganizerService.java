@@ -21,6 +21,8 @@ public interface OrganizerService {
 
     ResponseEntity<?> delete (Long organizerId);
 
+
+
     Organizer addEventToOrganizer(Long organizerId, String eventName);
 
     //ver  para el pago!!!!!!!!
