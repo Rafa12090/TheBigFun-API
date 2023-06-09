@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Configuration;
 
 public class MappingConfiguration {
     @Bean
-    public OrganizerMapper organizerMapper(){
+    public OrganizerMapper organizerMapper(){ return new OrganizerMapper(); }
 
-        return new OrganizerMapper();
+    @Bean
+    public AttendeeMapper attendeeMapper() {
+        return new AttendeeMapper();
     }
 }
