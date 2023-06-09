@@ -49,7 +49,7 @@ public class Attendee {
     )
     private Set<Event> events = new HashSet<>();
 
-    public Attendee addEvent(String eventName){
+/*    public Attendee addEvent(String eventName){
         if(events==null){
             events=new HashSet<>();
         }
@@ -58,6 +58,6 @@ public class Attendee {
                 .withName(eventName).withAttendee(this));
 
         return this;
-    }
+    }*/
 
 }
