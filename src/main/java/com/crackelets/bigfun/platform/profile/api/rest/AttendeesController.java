@@ -5,6 +5,11 @@ import com.crackelets.bigfun.platform.profile.mapping.AttendeeMapper;
 import com.crackelets.bigfun.platform.profile.resource.AttendeeResource;
 import com.crackelets.bigfun.platform.profile.resource.CreateAttendeeResource;
 import com.crackelets.bigfun.platform.profile.resource.UpdateAttendeeResource;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/attendees")
+@Tag(name = "Attendees", description = "Create,read, update and delete attendees")
 public class AttendeesController {
 
     private final AttendeeService attendeeService;
@@ -23,6 +29,7 @@ public class AttendeesController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Get attendees", description = "Get All attendees.")
     @GetMapping
     public Page<AttendeeResource> getAllAttendees(Pageable pageable) {
         return mapper.modelListPage(attendeeService.getAll(), pageable);
@@ -33,6 +40,10 @@ public class AttendeesController {
         return mapper.toResource(attendeeService.getById(attendeeId));
     }
 
+    @Operation(summary = "Create attendees", responses = {
+            @ApiResponse(description = "Attendee successfully created",responseCode = "201",
+                    content = @Content(mediaType = "application/json",schema = @Schema(implementation = AttendeeResource.class)))
+    })
     @PostMapping  // To create
     public ResponseEntity<AttendeeResource> createAttendee(@RequestBody CreateAttendeeResource resource) {
         return new ResponseEntity<>(mapper.toResource(attendeeService.create(mapper.toModel(resource))), HttpStatus.CREATED);
