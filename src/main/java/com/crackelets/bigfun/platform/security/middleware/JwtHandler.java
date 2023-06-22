@@ -24,10 +24,9 @@ public class JwtHandler {
     private String secret;
 
 
-    @Value("${authorization.jwt.expiration.days}")
+    @Value("7")
     private int expirationDays;
 
-    @Value("$")
 
     public String generateToken(Authentication authentication){
         String subject = ((UserDetailsImpl) authentication.getPrincipal()).getUsername();
