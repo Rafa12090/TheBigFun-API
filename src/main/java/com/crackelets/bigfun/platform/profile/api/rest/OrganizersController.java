@@ -8,6 +8,11 @@ import com.crackelets.bigfun.platform.profile.mapping.OrganizerMapper;
 import com.crackelets.bigfun.platform.profile.resource.CreateOrganizerResource;
 import com.crackelets.bigfun.platform.profile.resource.OrganizerResource;
 import com.crackelets.bigfun.platform.profile.resource.UpdateOrganizerResource;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="/api/v1/organizers", produces="application/json")
+@Tag(name = "Organizers", description = "Create, read, update and delete organizers")
 public class OrganizersController {
 
     private OrganizerService organizerService;
@@ -23,11 +29,7 @@ public class OrganizersController {
     private EventMapper eventMapper;
 
 
-
     private EventFilterService eventFilterService;
-
-
-
 
     public OrganizersController(OrganizerService organizerService, OrganizerMapper mapper1, EventMapper mapper2) {
         this.organizerService = organizerService;
@@ -41,17 +43,25 @@ public class OrganizersController {
         return organizerMapper.modelListPage(organizerService.getAll(),pageable);
     }
 
+
     @GetMapping("organizer/{organizerId}")
     public Page<EventResource> getAllEventsByOrganizerId(Pageable pageable, @PathVariable Long organizerId){
 
         return eventMapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
     }
 
-
+    @Operation(summary = "Get all organizers")
     @GetMapping("{organizerId}")          //"PathVariable": reconoce la variable de esta linea
     public OrganizerResource getOrganizerById(@PathVariable Long organizerId){
         return organizerMapper.toResource(organizerService.getById(organizerId));
     }
+
+    @Operation(summary = "Create organizer", responses = {
+            @ApiResponse(description = "Organizer successfully created",
+                    responseCode = "201",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OrganizerResource.class)))
+    })
 
 
     @PostMapping
