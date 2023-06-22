@@ -13,7 +13,7 @@ Feature: Organizer Adding
     And An Organizer Resource is included in Response Body, with values "Isabella Soriano", "IsabellaSH, "isabella@gmail.com"
 
   @organizer-duplicated
-  Scenario: Add Organizer with existing email
+    Scenario: Add organizer with existing email
     Given An Organizer Resource with values "Camila Soriano", "CamilaSH", "camila@gmail.com" is already stored
     When A Post Request is sent with values "Camila Soriano", "CamilaSH", "camila@gmail.com"
     Then A Response is received with Status 400
