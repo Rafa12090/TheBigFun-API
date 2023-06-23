@@ -10,11 +10,15 @@ public interface EventAttendeeService {
 
     List<EventAttendee> getAll();
 
-    EventAttendee getById(Long EventAttendeeId);
+    //EventAttendee getById(Long eventAttendeeId);
 
     EventAttendee create(EventAttendee eventAttendee);
 
     ResponseEntity<?> delete(Long eventAttendeeId);
+
+    List<EventAttendee> getAllByAttendeeId(Long attendeeId);
+
+    List<EventAttendee> getAllAttendeesByEventId(Long eventId);
 
 
 

@@ -7,7 +7,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration("EventMappingConfiguration")
 public class MappingConfiguration {
 
-@Bean
-    public EventMapper eventMapper(){return new EventMapper();}
+    @Bean
+    public EventMapper eventMapper() {
+        return new EventMapper();
+    }
+
+    @Bean
+    public EventAttendeeMapper eventAttendeeMapper(){
+        return new EventAttendeeMapper();
+    }
+
 
 }

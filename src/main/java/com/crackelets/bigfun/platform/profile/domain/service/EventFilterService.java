@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface EventFilterService {
 
-    List<Event> getAllEventsByOrganizer(Long id);
+    //List<Event> getAllEventsByOrganizer(Long id);
 
 }
