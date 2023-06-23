@@ -10,7 +10,7 @@ Feature: Organizer Adding
   Scenario: Add organizer with unique email
     When A Post Request is sent with values "Isabella Soriano", "IsabellaSH", "isabella@gmail.com"
     Then A Response is received with Status 201
-    And An Organizer Resource is included in Response Body, with values "Isabella Soriano", "IsabellaSH, "isabella@gmail.com"
+    And An Organizer Resource is included in Response Body, with values  "Isabella Soriano", "IsabellaSH", "isabella@gmail.com"
 
   @organizer-duplicated
     Scenario: Add organizer with existing email
