@@ -1,7 +1,11 @@
 package com.crackelets.bigfun.platform.step;
 
+import com.crackelets.bigfun.platform.profile.domain.model.Organizer;
+import com.crackelets.bigfun.platform.profile.domain.persistence.OrganizerRepository;
 import com.crackelets.bigfun.platform.profile.resource.CreateOrganizerResource;
-import com.crackelets.bigfun.platform.profile.resource.OrganizerResource;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,46 +13,33 @@ import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
-
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import java.util.Map;
 
 @CucumberContextConfiguration
-
-//para indicar que se trata de una prueba de integración con Spring Boot.
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
-//para utilizar el perfil de prueba.
-@ActiveProfiles("test")
-
 public class OrganizerStepDefinitions {
 
     @Autowired
+    private OrganizerRepository organizerRepository;
     private final TestRestTemplate testRestTemplate = new TestRestTemplate();
 
     @LocalServerPort
     private int randomServerPort;
     private String endpointPath;
     private ResponseEntity<String> responseEntity;
-    private List<OrganizerResource> organizerResources = new ArrayList<OrganizerResource>();
 
 
 
     @Given("The Endpoint {string} is available")
     public void theEndpointIsAvailable(String endpointPath) {
         this.endpointPath = String.format(endpointPath, randomServerPort);
+        /*
+        ResponseEntity<String> response = testRestTemplate.getForEntity(endpointPath, String.class);
+        HttpStatus statusCode = (HttpStatus) response.getStatusCode();
+        Assert.assertEquals(HttpStatus.OK, statusCode);*/
     }
 
     @When("A Post Request is sent with values {string}, {string}, {string}")
@@ -61,29 +52,31 @@ public class OrganizerStepDefinitions {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<CreateOrganizerResource> request = new HttpEntity<>(resource, headers);
         responseEntity = testRestTemplate.postForEntity(endpointPath, request, String.class);
+
     }
 
 
     @Then("A Response is received with Status {int}")
     public void aResponseIsReceivedWithStatus(int expectedStatus) {
-        int actualStatus = responseEntity.getStatusCodeValue();
-        assertEquals(expectedStatus, actualStatus);
+        HttpStatus currentStatus = (HttpStatus) responseEntity.getStatusCode();
+        Assert.assertEquals(expectedStatus, currentStatus.value());
     }
 
     @And("An Organizer Resource is included in Response Body, with values  {string}, {string}, {string}")
     public void anOrganizerResourceIsIncludedInResponseBodyWithValues(String name, String userName, String email) {
 
         String responseBody = responseEntity.getBody();
+        Assert.assertNotNull(responseBody);
 
-        assertNotNull(responseBody);
-
-        Gson gson = new Gson();
-        OrganizerResource organizerResource = gson.fromJson(responseBody, OrganizerResource.class);
-
-        // Verificar los valores del organizador con los valores esperados
-        assertEquals(name, organizerResource.getName());
-        assertEquals(userName, organizerResource.getUserName());
-        assertEquals(email, organizerResource.getEmail());
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Organizer organizer = objectMapper.readValue(responseBody, Organizer.class);
+            Assert.assertEquals(name, organizer.getName());
+            Assert.assertEquals(userName, organizer.getUserName());
+            Assert.assertEquals(email, organizer.getEmail());
+        } catch (JsonProcessingException e) {
+            Assert.fail("Error parsing response body: " + e.getMessage());
+        }
 
     }
 
@@ -91,18 +84,39 @@ public class OrganizerStepDefinitions {
     @Given("An Organizer Resource with values {string}, {string}, {string} is already stored")
     public void anOrganizerResourceWithValuesIsAlreadyStored(String name, String userName, String email) {
 
-        OrganizerResource organizer = new OrganizerResource()
-                .withName(name)
-                .withUserName(userName)
-                .withEmail(email);
-        organizerResources.add(organizer);
+        // Verificar si ya existe un Organizer con los mismos valores
+        Organizer existingOrganizer = organizerRepository.findByEmail(email);
+        if (existingOrganizer == null) {
+            // No existe un Organizer con los mismos valores, crear uno nuevo
+            Organizer organizer = new Organizer();
+            organizer.setName(name);
+            organizer.setUserName(userName);
+            organizer.setEmail(email);
+            organizerRepository.save(organizer);
+        }
+
     }
 
 
     @And("A Message is included in Response Body, with value {string}")
     public void aMessageIsIncludedInResponseBodyWithValue(String expectedMessage) {
+
         String responseBody = responseEntity.getBody();
         Assert.assertNotNull(responseBody);
-        Assert.assertTrue(responseBody.contains(expectedMessage));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Map<String, String> responseMap = objectMapper.readValue(responseBody, new TypeReference<Map<String, String>>() {});
+            String actualMessage = responseMap.get("message");
+            Assert.assertEquals(expectedMessage, actualMessage);
+        } catch (JsonProcessingException e) {
+            Assert.fail("Error parsing response body: " + e.getMessage());
+        }
+
     }
 }
+
+
+
+
+
