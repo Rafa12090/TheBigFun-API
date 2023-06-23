@@ -41,11 +41,11 @@ public class OrganizersController {
         return organizerMapper.modelListPage(organizerService.getAll(),pageable);
     }
 
-    @GetMapping("organizer/{organizerId}")
+/*    @GetMapping("organizer/{organizerId}")
     public Page<EventResource> getAllEventsByOrganizerId(Pageable pageable, @PathVariable Long organizerId){
 
         return eventMapper.modelListPage(eventFilterService.getAllEventsByOrganizer(organizerId), pageable);
-    }
+    }*/
 
 
     @GetMapping("{organizerId}")          //"PathVariable": reconoce la variable de esta linea

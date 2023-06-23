@@ -1,15 +1,16 @@
 package com.crackelets.bigfun.platform.booking.resource;
 
+import com.crackelets.bigfun.platform.booking.domain.model.EventAttendee;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
 @With
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class EventResource {
 
     private Long id;
@@ -20,7 +21,7 @@ public class EventResource {
     private Date date;
     private int cost;
     private String district;
-    private Long organizerId;
+    private Set<EventAttendee> attendeesListByEvent;
 
 
 
