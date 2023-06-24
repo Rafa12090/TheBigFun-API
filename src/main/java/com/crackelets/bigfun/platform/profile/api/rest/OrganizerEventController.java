@@ -40,6 +40,12 @@ public class OrganizerEventController {
         Organizer organizer=organizerRepository.findById(organizerId)
                 .orElseThrow(()->new RuntimeException("The Organizer doesn't exist."));
 
+        if(organizer.getEventsListByOrganizer()!=null){
+            boolean eventExist=organizer.getEventsListByOrganizer().stream()
+                    .anyMatch(event->event.getEventId().equals(eventId));
+            if(eventExist) return ResponseEntity.badRequest().body("These event already exist for the Organizer.");
+        }
+
         organizer.addEvent(organizer,eventId);
         organizerRepository.save(organizer);
 
