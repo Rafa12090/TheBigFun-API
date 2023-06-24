@@ -33,6 +33,7 @@ public class AttendeeStepDefinitions {
 
     @Given("The Endpoint {string} is available")
     public void theEndpointIsAvailable(String endpointPath) {
+        this.endpointPath = String.format(endpointPath, randomServerPort);
     }
 
     @When("A Post Request is sent with values {string}, {string}, {string}")

@@ -1,4 +1,4 @@
-Feature: Organizer Adding
+Feature: Attendee Adding
   As a Developer
   I want to add Attendee through API
   So that It can be available to applications.
