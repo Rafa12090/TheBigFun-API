@@ -8,4 +8,7 @@ public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
     Attendee findByName(String name);
 
     Attendee findByUserName(String name);
+
+    Attendee findByEmail(String email);
+
 }

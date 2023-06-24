@@ -1,8 +1,8 @@
 package com.crackelets.bigfun.platform.step;
 
-import com.crackelets.bigfun.platform.profile.domain.model.Organizer;
-import com.crackelets.bigfun.platform.profile.domain.persistence.OrganizerRepository;
-import com.crackelets.bigfun.platform.profile.resource.CreateOrganizerResource;
+import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
+import com.crackelets.bigfun.platform.profile.domain.persistence.AttendeeRepository;
+import com.crackelets.bigfun.platform.profile.resource.CreateAttendeeResource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,14 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.http.HttpStatus;
+
 import java.util.Map;
 
 @CucumberContextConfiguration
-public class OrganizerStepDefinitions {
+public class AttendeeStepDefinitions {
 
     @Autowired
-    private OrganizerRepository organizerRepository;
+    private AttendeeRepository attendeeRepository;
     private final TestRestTemplate testRestTemplate = new TestRestTemplate();
 
     @LocalServerPort
@@ -31,23 +31,20 @@ public class OrganizerStepDefinitions {
     private String endpointPath;
     private ResponseEntity<String> responseEntity;
 
-
-
     @Given("The Endpoint {string} is available")
     public void theEndpointIsAvailable(String endpointPath) {
     }
 
     @When("A Post Request is sent with values {string}, {string}, {string}")
     public void aPostRequestIsSentWithValues(String name, String userName, String email) {
-        CreateOrganizerResource resource = new CreateOrganizerResource()
+        CreateAttendeeResource resource = new CreateAttendeeResource()
                 .withName(name)
                 .withUserName(userName)
                 .withEmail(email);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<CreateOrganizerResource> request = new HttpEntity<>(resource, headers);
+        HttpEntity<CreateAttendeeResource> request = new HttpEntity<>(resource, headers);
         responseEntity = testRestTemplate.postForEntity(endpointPath, request, String.class);
-
     }
 
 
@@ -57,39 +54,36 @@ public class OrganizerStepDefinitions {
         Assert.assertEquals(expectedStatus, currentStatus.value());
     }
 
-    @And("An Organizer Resource is included in Response Body, with values  {string}, {string}, {string}")
-    public void anOrganizerResourceIsIncludedInResponseBodyWithValues(String name, String userName, String email) {
+    @And("An Attendee Resource is included in Response Body, with values  {string}, {string}, {string}")
+    public void anAttendeeResourceIsIncludedInResponseBodyWithValues(String name, String userName, String email) {
 
         String responseBody = responseEntity.getBody();
         Assert.assertNotNull(responseBody);
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            Organizer organizer = objectMapper.readValue(responseBody, Organizer.class);
-            Assert.assertEquals(name, organizer.getName());
-            Assert.assertEquals(userName, organizer.getUserName());
-            Assert.assertEquals(email, organizer.getEmail());
+            Attendee attendee = objectMapper.readValue(responseBody, Attendee.class);
+            Assert.assertEquals(name, attendee.getName());
+            Assert.assertEquals(userName, attendee.getUserName());
+            Assert.assertEquals(email, attendee.getEmail());
         } catch (JsonProcessingException e) {
             Assert.fail("Error parsing response body: " + e.getMessage());
         }
 
     }
 
+    @Given("An Attendee Resource with values {string}, {string}, {string} is already stored")
+    public void anAttendeeResourceWithValuesIsAlreadyStored(String name, String userName, String email) {
 
-    @Given("An Organizer Resource with values {string}, {string}, {string} is already stored")
-    public void anOrganizerResourceWithValuesIsAlreadyStored(String name, String userName, String email) {
-
-        // Verificar si ya existe un Organizer con los mismos valores
-        Organizer existingOrganizer = organizerRepository.findByEmail(email);
-        if (existingOrganizer == null) {
-            // No existe un Organizer con los mismos valores, crear uno nuevo
-            Organizer organizer = new Organizer();
-            organizer.setName(name);
-            organizer.setUserName(userName);
-            organizer.setEmail(email);
-            organizerRepository.save(organizer);
+        // Verificar si ya existe un Attendee con los mismos valores
+        Attendee existingAttendee = attendeeRepository.findByEmail(email);
+        if (existingAttendee == null) {
+            Attendee attendee = new Attendee();
+            attendee.setName(name);
+            attendee.setUserName(userName);
+            attendee.setEmail(email);
+            attendeeRepository.save(attendee);
         }
-
     }
 
 
@@ -107,11 +101,6 @@ public class OrganizerStepDefinitions {
         } catch (JsonProcessingException e) {
             Assert.fail("Error parsing response body: " + e.getMessage());
         }
-
     }
+
 }
-
-
-
-
-
