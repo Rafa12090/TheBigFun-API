@@ -28,6 +28,6 @@ public class EventAttendeeMapper implements Serializable {
 
     public EventAttendee toModel(CreateEventAttendeeResource resource){ return mapper.map(resource,EventAttendee.class);}
 
-    public EventAttendee toModel(UpdateAttendeeResource resource){ return mapper.map(resource,EventAttendee.class);}
+    //public EventAttendee toModel(UpdateAttendeeResource resource){ return mapper.map(resource,EventAttendee.class);}
 
 }

@@ -54,21 +54,11 @@ public class OrganizerServiceImpl implements OrganizerService {
             throw new ResourceValidationException(ENTITY,violations);
         }
 
-        //Name/username/email uniqueness validation
-        Organizer organizerWithName=organizerRepository.findByName(organizer.getName());
-        Organizer organizerWithUserName=organizerRepository.findByUserName(organizer.getUserName());
-        Organizer organizerWithEmail=organizerRepository.findByEmail(organizer.getEmail());
+        Organizer organizerWithUserName=organizerRepository.findFirstByUserName(organizer.getUserName());
+        Organizer organizerWithEmail=organizerRepository.findFirstByEmail(organizer.getEmail());
 
-        if(organizerWithName !=null){
-            throw  new ResourceValidationException(ENTITY, "An organizer with the same name alredy exists");
-        }
-
-        if(organizerWithUserName !=null){
-            throw  new ResourceValidationException(ENTITY, "An organizer with the same user name alredy exists");
-        }
-
-        if(organizerWithEmail !=null){
-            throw  new ResourceValidationException(ENTITY, "An organizer with the same email alredy exists");
+        if(organizerWithUserName !=null && organizerWithEmail !=null){
+            throw  new ResourceValidationException(ENTITY, "An organizer with the same user name and email already exists");
         }
 
         //Perform creation operation
@@ -86,9 +76,9 @@ public class OrganizerServiceImpl implements OrganizerService {
         }
 
         //Name uniqueness validation
-        Organizer organizerWithName = organizerRepository.findByName(organizer.getName());
-        Organizer organizerWithUserName=organizerRepository.findByUserName(organizer.getUserName());
-        Organizer organizerWithEmail=organizerRepository.findByEmail(organizer.getEmail());
+        Organizer organizerWithName = organizerRepository.findFirstByName(organizer.getName());
+        Organizer organizerWithUserName=organizerRepository.findFirstByUserName(organizer.getUserName());
+        Organizer organizerWithEmail=organizerRepository.findFirstByEmail(organizer.getEmail());
 
         //si el nombre del organizador existe && es falso que el id de este organizador es igual al id del parametro
         if (organizerWithName != null && !organizerWithName.getId().equals(organizer.getId())) {

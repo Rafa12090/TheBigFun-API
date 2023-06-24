@@ -4,7 +4,7 @@ package com.crackelets.bigfun.platform.booking.mapping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration("EventMappingConfiguration")
+@Configuration("bookingMappingConfiguration")
 public class MappingConfiguration {
 
     @Bean
