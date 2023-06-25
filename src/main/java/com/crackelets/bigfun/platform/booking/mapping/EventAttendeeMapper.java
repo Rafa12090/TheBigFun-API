@@ -3,8 +3,6 @@ package com.crackelets.bigfun.platform.booking.mapping;
 import com.crackelets.bigfun.platform.booking.domain.model.EventAttendee;
 import com.crackelets.bigfun.platform.booking.resource.CreateEventAttendeeResource;
 import com.crackelets.bigfun.platform.booking.resource.EventAttendeeResource;
-import com.crackelets.bigfun.platform.profile.resource.CreateAttendeeResource;
-import com.crackelets.bigfun.platform.profile.resource.UpdateAttendeeResource;
 import com.crackelets.bigfun.platform.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
