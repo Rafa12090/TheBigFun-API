@@ -1,11 +1,12 @@
 
 package com.crackelets.bigfun.platform.booking.domain.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 import lombok.With;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor

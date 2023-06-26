@@ -1,12 +1,12 @@
 package com.crackelets.bigfun.platform.security.domain.model.entity;
 import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,39 +18,35 @@ import java.util.Set;
 @With
 @Entity
 @Table(name = "users")
-public class User{
+public class User extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @NotNull
     @Size(max = 50)
     @Column(unique = true)
     private String username;
 
-    @NotNull
     @NotBlank
-    @Size(max = 80)
+    @Size(max = 50)
     @Column(unique = true)
     @Email
     private String email;
 
     @NotBlank
-    @Size(max = 30)
+    @Size(max = 120)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name ="user_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
-    public User(@NotNull String username, @NotNull String email, String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
-
 }

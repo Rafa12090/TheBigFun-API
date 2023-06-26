@@ -10,9 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @With
-
 public class AuthenticateResource {
-
 
     private Long id;
     private String username;

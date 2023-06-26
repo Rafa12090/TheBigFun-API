@@ -17,21 +17,24 @@ import java.util.List;
 public class UserMapper implements Serializable {
     @Autowired
     EnhancedModelMapper mapper;
-    Converter<Role, String> roleToString = new AbstractConverter<Role, String>() {
+
+    Converter<Role, String> roleToStringConverter = new AbstractConverter<Role, String>() {
         @Override
         protected String convert(Role role) {
             return role == null ? null : role.getName().name();
         }
     };
 
-    public UserResource toResource(User model){
-        mapper.addConverter(roleToString);
-        return  mapper.map(model, UserResource.class);
+    // Object Mapping
+
+    public UserResource toResource(User model) {
+        mapper.addConverter(roleToStringConverter);
+        return mapper.map(model, UserResource.class);
     }
 
-    public Page<UserResource> modelListPage(List<User> modelList, Pageable pageable){
-        mapper.addConverter(roleToString);
-        return new PageImpl<>(mapper.mapList(modelList,UserResource.class), pageable, modelList.size());
+    public Page<UserResource> modelListToPage(List<User> modelList, Pageable pageable) {
+        mapper.addConverter(roleToStringConverter);
+        return new PageImpl<>(mapper.mapList(modelList, UserResource.class), pageable, modelList.size());
     }
 
 }

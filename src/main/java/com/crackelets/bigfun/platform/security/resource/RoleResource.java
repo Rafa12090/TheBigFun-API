@@ -10,5 +10,4 @@ import lombok.*;
 public class RoleResource {
     private Long id;
     private String name;
-
 }
