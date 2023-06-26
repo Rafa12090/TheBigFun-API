@@ -5,13 +5,13 @@ import com.crackelets.bigfun.platform.profile.domain.persistence.OrganizerReposi
 import com.crackelets.bigfun.platform.profile.domain.service.OrganizerService;
 import com.crackelets.bigfun.platform.shared.exception.ResourceNotFoundException;
 import com.crackelets.bigfun.platform.shared.exception.ResourceValidationException;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
 
@@ -98,10 +98,6 @@ public class OrganizerServiceImpl implements OrganizerService {
             throw new ResourceValidationException(ENTITY, "An organizer with tne same user name alredy exists");
         }
 
-        /*if (organizerWithEmail != null && !organizerWithEmail.getId().equals(organizer.getId())) {
-            throw new ResourceValidationException(ENTITY, "An organizer with tne same email alredy exists");
-        }*/
-
         //Perform creation operation
 
           //puede modificar el username
@@ -123,8 +119,6 @@ public class OrganizerServiceImpl implements OrganizerService {
     }
 
     @Override
-    //agrega event, lo valida y lo agrega a la coleccion de events de dicho organizer
-    //por ultimo retorna el propio organizer
     public Organizer addEventToOrganizer(Long organizerId, String eventName) {
         /*
 
@@ -137,16 +131,8 @@ public class OrganizerServiceImpl implements OrganizerService {
     }
 
     @Override
-    //agrega pay, lo valida y lo agrega a la coleccion de pays de dicho organizer
-    //por ultimo retorna el propio organizer
     public Organizer addPayToOrganizer(Long organizerId, Long paymentId) {
-        /*
 
-        return organizerRepository.findById(organizerId).map(organizer->{
-                    return organizerRepository.save(organizer.addPayment(paymentId));
-                })
-                .orElseThrow(()->new ResourceNotFoundException(ENTITY,organizerId));
-                */
          return null;
     }
 

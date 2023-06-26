@@ -1,19 +1,15 @@
 package com.crackelets.bigfun.platform.booking.domain.model;
 
-import com.crackelets.bigfun.platform.profile.domain.model.Attendee;
-import com.crackelets.bigfun.platform.profile.domain.model.Organizer;
 import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Time;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+
 
 @Getter
 @Setter
