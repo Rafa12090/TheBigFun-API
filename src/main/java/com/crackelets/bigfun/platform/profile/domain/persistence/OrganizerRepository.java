@@ -15,4 +15,9 @@ public interface OrganizerRepository extends JpaRepository <Organizer,Long> {
     Organizer findByUserName(String userName);
     Organizer findByEmail(String email);
 
+    Organizer findFirstByEmail(String email);
+    Organizer findFirstByName(String name);
+    Organizer findFirstByUserName(String userName);
+
+
 }

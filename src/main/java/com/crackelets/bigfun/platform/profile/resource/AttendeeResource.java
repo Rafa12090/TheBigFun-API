@@ -1,6 +1,7 @@
 package com.crackelets.bigfun.platform.profile.resource;
 
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
+import com.crackelets.bigfun.platform.profile.domain.model.AttendeeEvent;
 import lombok.*;
 
 import java.util.Set;
@@ -16,5 +17,5 @@ public class AttendeeResource {
     private String userName;
     private String name;
     private String email;
-    //private Set<Event> events;
+    private Set<AttendeeEvent>eventsListByAttendee;
 }

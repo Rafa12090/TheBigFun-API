@@ -1,19 +1,17 @@
+package com.crackelets.bigfun.platform.profile.domain.model;
 
-package com.crackelets.bigfun.platform.booking.domain.model;
-
-import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.With;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @With
 @Entity
-@Table(name="event_attendees")
-public class EventAttendee {
+@Table(name="attendee_events")
+public class AttendeeEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +20,12 @@ public class EventAttendee {
     @ManyToOne(fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name = "event_id",nullable = false)
     @JsonIgnore
-    private Event event;
+    private Attendee attendee;
     private Long attendeeId;
 
-    public EventAttendee(Event event, Long attendeeId) {
-        this.event = event;
+
+    public AttendeeEvent(Attendee attendee, Long attendeeId) {
+        this.attendee = attendee;
         this.attendeeId = attendeeId;
     }
 }

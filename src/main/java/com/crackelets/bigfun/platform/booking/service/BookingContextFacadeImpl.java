@@ -1,15 +1,15 @@
 package com.crackelets.bigfun.platform.booking.service;
 
-import com.crackelets.bigfun.platform.booking.api.internal.BookingFilterFacade;
+import com.crackelets.bigfun.platform.booking.api.internal.BookingContextFacade;
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
 import com.crackelets.bigfun.platform.booking.domain.service.EventService;
 
 import java.util.List;
 
-public class BookingFilterFacadeImpl implements BookingFilterFacade {
+public class BookingContextFacadeImpl implements BookingContextFacade {
     private final EventService eventService;
 
-    public BookingFilterFacadeImpl(EventService eventService) {
+    public BookingContextFacadeImpl(EventService eventService) {
         this.eventService = eventService;
     }
 
@@ -18,8 +18,8 @@ public class BookingFilterFacadeImpl implements BookingFilterFacade {
         return eventService.getAll();
     }
 
-    @Override
+/*    @Override
     public List<Event> getAllByOrganizerId(Long id) {
         return eventService.getAllByOrganizerId(id);
-    }
+    }*/
 }

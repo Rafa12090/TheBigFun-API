@@ -23,20 +23,22 @@ public class Payment extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Date date;
+
     @NotNull
     @NotBlank
     @Size(max=500)
-    @Column(unique = true)
+    //@Column(unique = true)
     private String qrImg;
 
 
-    @NotNull
+/*    @NotNull
     private Long organizerId;
 
     @NotNull
     private Long eventId;
 
     @NotNull
-    private Long attendeeId;
+    private Long attendeeId;*/
 }

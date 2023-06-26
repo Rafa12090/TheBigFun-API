@@ -1,7 +1,5 @@
-
 package com.crackelets.bigfun.platform.booking.domain.model;
 
-import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,8 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @With
 @Entity
-@Table(name="event_attendees")
-public class EventAttendee {
+@Table(name="event_payments")
+public class EventPayment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +21,11 @@ public class EventAttendee {
     @JoinColumn(name = "event_id",nullable = false)
     @JsonIgnore
     private Event event;
-    private Long attendeeId;
 
-    public EventAttendee(Event event, Long attendeeId) {
+    private Long paymentId;
+
+    public EventPayment(Event event, Long paymentId) {
         this.event = event;
-        this.attendeeId = attendeeId;
+        this.paymentId = paymentId;
     }
 }

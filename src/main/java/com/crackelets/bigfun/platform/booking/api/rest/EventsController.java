@@ -31,15 +31,12 @@ public class EventsController {
         return mapper.modelListPage(eventService.getAll(), pageable);
     }
 
-    @GetMapping ("{eventId}")
-    public EventResource getEventById(@PathVariable Long eventId){
-        return mapper.toResource(eventService.getById(eventId));
-    }
-
     @PostMapping
     public ResponseEntity<EventResource> createEvent(@RequestBody CreateEventResource resource){
         return new ResponseEntity<>(mapper.toResource(eventService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
+
+    //@PostMapping()
 
     @PutMapping("{eventId}")
     public EventResource updateEvent(@PathVariable Long eventId,
@@ -47,10 +44,10 @@ public class EventsController {
         return mapper.toResource(eventService.update(eventId, mapper.toModel(resource)));
     }
 
-    @GetMapping("org/{organizerId}")
+/*    @GetMapping("org/{organizerId}")
     public Page<EventResource> getAllEventsByOrginerId(Pageable pageable,@PathVariable Long organizerId){
         return mapper.modelListPage(eventService.getAllByOrganizerId(organizerId), pageable);
-    }
+    }*/
 
     @DeleteMapping("{eventId}")
     public ResponseEntity<?> deleteEvent(@PathVariable Long eventId){ return eventService.delete(eventId);}
