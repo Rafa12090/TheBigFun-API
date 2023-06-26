@@ -50,6 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1/userss/auth/*",
                         "/api/v1/attendees",
                         "/api/v1/events",
+                        "/api/v1/events/*",
+                        "/api/v1/payments/*",
+                        "/api/v1/attendees/*",
+                        "/api/v1/organizers/*",
                         "/swagger-ui/**",
                         "/api-docs/**").permitAll()
                 .anyRequest().authenticated();

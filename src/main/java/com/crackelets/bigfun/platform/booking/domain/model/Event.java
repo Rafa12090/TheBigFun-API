@@ -28,11 +28,9 @@ public class Event extends AuditModel {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    @Size(min = 5)
     private String name;
 
     @Size(max =240)
-    @Size(min = 20)
     private String address;
 
     @NotNull
@@ -48,7 +46,6 @@ public class Event extends AuditModel {
     private int cost;
 
     @Size(max = 50)
-    @Size(min =5)
     @NotNull
     private String district;
     @NotNull
