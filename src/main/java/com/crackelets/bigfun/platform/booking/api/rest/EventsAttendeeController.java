@@ -50,6 +50,13 @@ public class EventsAttendeeController {
     public ResponseEntity<?> addAttendeeToEvent(@PathVariable Long eventId,@PathVariable Long attendeeId){
         Event event=eventRepository.findById(eventId).orElseThrow(()->new RuntimeException("The event doesn't exist"));
 
+        if(event.getAttendeesListByEvent()!=null){
+            boolean attendeeExist=event.getAttendeesListByEvent().stream()
+                    .anyMatch(attendee->attendee.getAttendeeId().equals(attendeeId));
+
+            if(attendeeExist) return ResponseEntity.badRequest().body("These attendee already exist for the Event.");
+        }
+
         event.addAttendee(event,attendeeId);
         eventRepository.save(event);
 

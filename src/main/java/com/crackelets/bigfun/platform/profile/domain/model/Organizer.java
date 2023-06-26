@@ -42,6 +42,16 @@ public class Organizer extends AuditModel {
     @Size(max = 255)
     private String email;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="organizer")
+    private Set<OrganizerEvent> eventsListByOrganizer;
+
+    public Organizer addEvent(Organizer organizer,long eventId){
+        if(eventsListByOrganizer==null) eventsListByOrganizer=new HashSet<>();
+        this.eventsListByOrganizer.add(new OrganizerEvent(this,eventId));
+
+        return this;
+    }
+
 
     //Relationships
 

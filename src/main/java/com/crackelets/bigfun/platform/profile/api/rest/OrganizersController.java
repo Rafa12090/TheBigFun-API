@@ -22,8 +22,6 @@ public class OrganizersController {
     private OrganizerMapper organizerMapper;
     private EventMapper eventMapper;
 
-
-
     private EventFilterService eventFilterService;
 
 
