@@ -19,7 +19,8 @@ public class EventMapper implements Serializable {
     @Autowired
     private EnhancedModelMapper mapper;
 
-    public EventResource toResource(Event model){return mapper.map(model, EventResource.class);}
+    public EventResource toResource(Event model){
+        return mapper.map(model, EventResource.class);}
 
     public Page<EventResource> modelListPage(List<Event> modelList, Pageable pageable){
         return new PageImpl<>(mapper.mapList(modelList, EventResource.class), pageable, modelList.size());

@@ -15,19 +15,15 @@ import java.util.Date;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class CreateEventResource {
 
     @NotNull
     @NotBlank
     @Size(max= 50)
-    @Size(min = 5)
     @Column(unique = true)
-
     private String name;
 
     @Size(max =240)
-    @Size(min = 20)
     private String address;
 
     @NotNull
@@ -44,12 +40,11 @@ public class CreateEventResource {
     private int cost;
 
     @Size(max = 50)
-    @Size(min = 5)
     @NotNull
     private String district;
 
-    @NotNull
-    private Long organizerId;
+/*    @NotNull
+    private Long organizerId;*/
 
 
 

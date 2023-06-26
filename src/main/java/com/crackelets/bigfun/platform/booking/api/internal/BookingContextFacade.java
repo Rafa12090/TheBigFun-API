@@ -4,9 +4,9 @@ import com.crackelets.bigfun.platform.booking.domain.model.Event;
 
 import java.util.List;
 
-public interface BookingFilterFacade {
+public interface BookingContextFacade {
 
    List<Event> getAllEvents();
-   List<Event> getAllByOrganizerId(Long id);
+   //List<Event> getAllByOrganizerId(Long id);
 
 }

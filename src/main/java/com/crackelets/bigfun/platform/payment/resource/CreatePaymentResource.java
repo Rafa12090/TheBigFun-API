@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatePaymentResource {
+
     private Date date;
 
     @NotNull
