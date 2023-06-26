@@ -28,6 +28,7 @@ public class JwtHandler {
     private int expirationDays;
 
 
+
     public String generateToken(Authentication authentication){
         String subject = ((UserDetailsImpl) authentication.getPrincipal()).getUsername();
         Date issueAt = new Date();

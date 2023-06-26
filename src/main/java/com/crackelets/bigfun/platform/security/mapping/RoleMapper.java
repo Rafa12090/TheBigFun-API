@@ -32,4 +32,5 @@ public class RoleMapper implements Serializable {
         mapper.addConverter(roleToString);
         return new PageImpl<>(mapper.mapList(modelList, RoleResource.class), pageable, modelList.size());
     }
+
 }

@@ -16,4 +16,5 @@ public class AuthenticateResponse extends BaseResponse<AuthenticateResponse> {
     public AuthenticateResponse(AuthenticateResponse resource) {
         super(resource);
     }
+
 }

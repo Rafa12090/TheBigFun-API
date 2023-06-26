@@ -22,4 +22,5 @@ public class Role extends AuditModel {
     @Enumerated(EnumType.STRING)
     @Column(length =  20)
     private Roles name;
+
 }

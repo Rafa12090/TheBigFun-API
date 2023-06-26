@@ -26,4 +26,5 @@ public class DatabaseSeedingConfig {
         roleService.seed();
         logger.info("Finished Database Seeding Process for {} at {}", name, new Timestamp(System.currentTimeMillis()));
     }
+
 }

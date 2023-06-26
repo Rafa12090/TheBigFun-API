@@ -13,6 +13,7 @@ import java.util.List;
 
 public class AuthenticateResource {
 
+
     private Long id;
     private String username;
     private String email;
