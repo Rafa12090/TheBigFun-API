@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,15 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-@Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Bean
     public JwtAuthorizationFilter authorizationFilter() { return new JwtAuthorizationFilter(); }
@@ -33,16 +31,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
-    //@Override
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
-        builder.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    @Override
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.userDetailsService(userService);
     }
 
-    @Override  //Agregado por mi
     @Bean
-    public AuthenticationManager authenticationManager() throws Exception
-    {return super.authenticationManagerBean();}
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception { return super.authenticationManagerBean();}
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,10 +47,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests().antMatchers(
-                        "/api/v1/users/auth/*",
+                        "/api/v1/userss/auth/*",
+                        "/api/v1/attendees",
+                        "/api/v1/events",
                         "/swagger-ui/**",
                         "/api-docs/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
+

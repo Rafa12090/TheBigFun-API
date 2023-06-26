@@ -16,7 +16,7 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    private static String[] DEFAULT_ROLES = {"ROLE_USER", "ROLE_INSTRUCTOR", "ROLE_ADMIN"};
+    private static String[] DEFAULT_ROLES = {"ROLE_USER", "ROLE_ORGANIZER", "ROLE_ADMIN"};
 
     @Override
     public void seed() {

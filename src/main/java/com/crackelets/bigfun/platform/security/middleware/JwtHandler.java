@@ -22,7 +22,7 @@ public class JwtHandler {
     @Value("${authorization.jwt.secret}")
     private String secret;
 
-    @Value("${authorization.jwt.expiration.days}")
+    @Value("${authorization.expiration.days}")
     private int expirationDays;
 
     public String generateToken(Authentication authentication) {
