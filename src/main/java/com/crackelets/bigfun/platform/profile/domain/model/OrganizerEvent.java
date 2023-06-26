@@ -1,7 +1,7 @@
 package com.crackelets.bigfun.platform.profile.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Getter

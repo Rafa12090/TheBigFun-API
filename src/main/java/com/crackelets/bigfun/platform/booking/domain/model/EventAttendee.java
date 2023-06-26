@@ -3,8 +3,7 @@ package com.crackelets.bigfun.platform.booking.domain.model;
 
 import com.crackelets.bigfun.platform.shared.domain.model.AuditModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.*;
+import javax.persistence.*;import lombok.*;
 
 @Getter
 @Setter

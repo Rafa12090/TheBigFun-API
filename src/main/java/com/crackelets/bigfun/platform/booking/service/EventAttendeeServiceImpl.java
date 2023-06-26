@@ -5,10 +5,10 @@ import com.crackelets.bigfun.platform.booking.domain.persistence.EventAttendeeRe
 import com.crackelets.bigfun.platform.booking.domain.persistence.EventRepository;
 import com.crackelets.bigfun.platform.booking.domain.service.EventAttendeeService;
 import com.crackelets.bigfun.platform.shared.exception.ResourceValidationException;
-import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Validator;
 import java.util.List;
 
 @Service
@@ -22,11 +22,8 @@ public class EventAttendeeServiceImpl implements EventAttendeeService {
 
     private final Validator validator;
 
-    // final Validator validator;
-
     public EventAttendeeServiceImpl(EventAttendeeRepository eventAttendeeRepository, EventRepository eventRepository, Validator validator) {
         this.eventAttendeeRepository = eventAttendeeRepository;
-        //this.validator = validator;
         this.eventRepository = eventRepository;
         this.validator = validator;
     }
@@ -36,12 +33,6 @@ public class EventAttendeeServiceImpl implements EventAttendeeService {
     public List<EventAttendee> getAll() {
         return eventAttendeeRepository.findAll();
     }
-
-/*    @Override
-    public EventAttendee getById(Long eventAttendeeId) {
-        return eventAttendeeRepository.findByEventId(eventAttendeeId)
-                .orElseThrow(()->new ResourceNotFoundException(ENTITY,eventAttendeeId));
-    }*/
 
     @Override
     public EventAttendee create(EventAttendee eventAttendee) {
