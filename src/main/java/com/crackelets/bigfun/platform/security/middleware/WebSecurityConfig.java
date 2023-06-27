@@ -48,12 +48,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests().antMatchers(
                         "/api/v1/userss/auth/*",
-                        "/api/v1/attendees",
+                        "/api/v1/**",
+ /*                       "/api/v1/attendees",
+                        "/api/v1/attendees/*",
                         "/api/v1/events",
                         "/api/v1/events/*",
+                        "/api/v1/eventsp",
+                        "/api/v1/eventsp/*",
+                        "/api/v1/eventsto",
+                        "/api/v1/eventsto/*",
                         "/api/v1/payments/*",
-                        "/api/v1/attendees/*",
+                        "/api/v1/organizers",
                         "/api/v1/organizers/*",
+                        "/api/v1/organizersto",
+                        "/api/v1/organizersto/**",*/
                         "/swagger-ui/**",
                         "/api-docs/**").permitAll()
                 .anyRequest().authenticated();
