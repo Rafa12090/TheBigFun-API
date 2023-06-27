@@ -8,6 +8,6 @@ public interface EventPaymentService {
 
     List<EventPayment> getAll();
 
-    List<EventPayment> getAllByEventId(Long eventId);
+    List<EventPayment> getAllPaymentByEventId(Long eventId);
 
 }

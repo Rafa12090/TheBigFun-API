@@ -35,9 +35,9 @@ public class EventPaymentController {
         return mapper.modelListPage(eventPaymentService.getAll(),pageable);
     }
 
-    @GetMapping("{eventId}")
+    @GetMapping("{eventId}/payments")
     public Page<EventPaymentResource> getAllPaymentsByEventId(@PathVariable Long eventId,Pageable pageable){
-        return mapper.modelListPage(eventPaymentService.getAllByEventId(eventId),pageable);
+        return mapper.modelListPage(eventPaymentService.getAllPaymentByEventId(eventId),pageable);
     }
 
     @PostMapping("{eventId}/payments/{paymentId}")

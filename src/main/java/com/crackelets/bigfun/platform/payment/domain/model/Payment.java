@@ -29,16 +29,7 @@ public class Payment extends AuditModel {
     @NotNull
     @NotBlank
     @Size(max=500)
-    //@Column(unique = true)
     private String qrImg;
 
 
-/*    @NotNull
-    private Long organizerId;
-
-    @NotNull
-    private Long eventId;
-
-    @NotNull
-    private Long attendeeId;*/
 }

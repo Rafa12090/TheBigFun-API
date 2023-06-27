@@ -31,7 +31,7 @@ public class EventPaymentServiceImpl implements EventPaymentService {
     }
 
     @Override
-    public List<EventPayment> getAllByEventId(Long eventId) {
+    public List<EventPayment> getAllPaymentByEventId(Long eventId) {
 
         var event=eventRepository.findById(eventId);
         if(event==null) throw new ResourceValidationException("The Event doesn't exist.");

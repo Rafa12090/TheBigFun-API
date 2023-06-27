@@ -1,7 +1,6 @@
 package com.crackelets.bigfun.platform.booking.mapping;
 
 import com.crackelets.bigfun.platform.booking.domain.model.EventPayment;
-import com.crackelets.bigfun.platform.booking.resource.CreateEventAttendeeResource;
 import com.crackelets.bigfun.platform.booking.resource.CreateEventPaymentResource;
 import com.crackelets.bigfun.platform.booking.resource.EventPaymentResource;
 import com.crackelets.bigfun.platform.shared.mapping.EnhancedModelMapper;
@@ -19,6 +18,7 @@ public class EventPaymentMapper implements Serializable {
     private EnhancedModelMapper mapper;
 
     public EventPaymentResource toResource(EventPayment model){
+
         return mapper.map(model,EventPaymentResource.class);
     }
 
