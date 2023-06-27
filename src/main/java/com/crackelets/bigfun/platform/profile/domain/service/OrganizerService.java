@@ -15,6 +15,8 @@ public interface OrganizerService {
 
     Organizer getById(Long organizerId);
 
+    Organizer getByName(String Name);
+
     Organizer create(Organizer organizer);
 
     Organizer update(Long organizerId,Organizer organizer);

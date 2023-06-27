@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
 
-    Attendee findByName(String name);
+    Attendee findFirstByName(String name);
 
     Attendee findByUserName(String name);
 

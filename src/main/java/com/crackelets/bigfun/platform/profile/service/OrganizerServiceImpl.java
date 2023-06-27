@@ -44,6 +44,14 @@ public class OrganizerServiceImpl implements OrganizerService {
     }
 
     @Override
+    public Organizer getByName(String mame) {
+        var organizerWithName = organizerRepository.findFirstByName(mame);
+        if(organizerWithName==null)
+            throw new ResourceValidationException(ENTITY,"The organizer doesn't exist.");
+        return organizerWithName;
+    }
+
+    @Override
     //diferente nombre / diferente correo / diferente nombre de usuario
     public Organizer create(Organizer organizer) {
 

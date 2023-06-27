@@ -15,6 +15,8 @@ public interface AttendeeService {
 
     Attendee getById(Long attendeeId);
 
+    Attendee getByName(String name);
+
     Attendee create(Attendee attendee);
 
     Attendee update(Long id,Attendee attendee);

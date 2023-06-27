@@ -46,6 +46,14 @@ public class AttendeeServiceImpl implements AttendeeService {
     }
 
     @Override
+    public Attendee getByName(String name) {
+        var attendeeWithName = attendeeRepository.findFirstByName(name);
+        if(attendeeWithName==null)
+            throw new ResourceValidationException(ENTITY,"The attendee doesn't exist.");
+        return attendeeWithName;
+    }
+
+    @Override
     public Attendee create(Attendee attendee) {
 
         Set<ConstraintViolation<Attendee>> violations = validator.validate(attendee);

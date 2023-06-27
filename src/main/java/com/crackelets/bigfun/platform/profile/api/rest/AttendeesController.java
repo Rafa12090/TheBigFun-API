@@ -40,6 +40,13 @@ public class AttendeesController {
         return mapper.toResource(attendeeService.getById(attendeeId));
     }
 
+    @GetMapping("byname")
+    public AttendeeResource getByName(@RequestParam("name") String name){
+        return mapper.toResource(attendeeService.getByName(name));
+    }
+
+
+
     @Operation(summary = "Create attendees", responses = {
             @ApiResponse(description = "Attendee successfully created",responseCode = "201",
                     content = @Content(mediaType = "application/json",schema = @Schema(implementation = AttendeeResource.class)))
