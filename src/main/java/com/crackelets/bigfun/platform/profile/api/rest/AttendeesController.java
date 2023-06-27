@@ -40,8 +40,8 @@ public class AttendeesController {
         return mapper.toResource(attendeeService.getById(attendeeId));
     }
 
-    @GetMapping("byname")
-    public AttendeeResource getByName(@RequestParam("name") String name){
+    @GetMapping("byname/{name}")
+    public AttendeeResource getByName(@PathVariable String name){
         return mapper.toResource(attendeeService.getByName(name));
     }
 

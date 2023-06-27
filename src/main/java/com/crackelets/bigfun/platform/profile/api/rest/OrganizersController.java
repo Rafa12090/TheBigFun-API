@@ -39,8 +39,8 @@ public class OrganizersController {
         return organizerMapper.modelListPage(organizerService.getAll(),pageable);
     }
 
-    @GetMapping("byname")
-    public OrganizerResource getByName(@RequestParam("name") String name){
+    @GetMapping("byname/{name}")
+    public OrganizerResource getByName(@PathVariable String name){
         return organizerMapper.toResource(organizerService.getByName(name));
     }
 
