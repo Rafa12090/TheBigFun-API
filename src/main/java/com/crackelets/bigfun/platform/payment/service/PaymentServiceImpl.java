@@ -5,14 +5,14 @@ import com.crackelets.bigfun.platform.payment.domain.persistence.PaymentReposito
 import com.crackelets.bigfun.platform.payment.domain.service.PaymentService;
 import com.crackelets.bigfun.platform.shared.exception.ResourceNotFoundException;
 import com.crackelets.bigfun.platform.shared.exception.ResourceValidationException;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
 @Service

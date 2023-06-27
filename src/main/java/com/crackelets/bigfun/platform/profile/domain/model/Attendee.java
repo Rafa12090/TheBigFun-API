@@ -1,10 +1,10 @@
 package com.crackelets.bigfun.platform.profile.domain.model;
 
 import com.crackelets.bigfun.platform.booking.domain.model.Event;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 import java.util.HashSet;
@@ -47,24 +47,5 @@ public class Attendee {
         this.eventsListByAttendee.add(new AttendeeEvent(this,eventId));
     }
 
-
-/*    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "attendee_event",
-            joinColumns = @JoinColumn(name = "attendee_id"),
-            inverseJoinColumns = @JoinColumn(name = "event_id")
-    )
-    private Set<Event> events = new HashSet<>();*/
-
-/*    public Attendee addEvent(String eventName){
-        if(events==null){
-            events=new HashSet<>();
-        }
-
-        events.add(new Event()
-                .withName(eventName).withAttendee(this));
-
-        return this;
-    }*/
 
 }

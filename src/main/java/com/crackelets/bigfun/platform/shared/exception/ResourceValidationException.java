@@ -1,11 +1,12 @@
 package com.crackelets.bigfun.platform.shared.exception;
 
-import jakarta.validation.ConstraintViolation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.Set;
+import javax.validation.ConstraintViolation;
 import java.util.stream.Collectors;
+
+import java.util.Set;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ResourceValidationException extends RuntimeException {

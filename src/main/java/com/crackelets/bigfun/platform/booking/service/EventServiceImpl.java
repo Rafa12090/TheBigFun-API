@@ -6,16 +6,15 @@ import com.crackelets.bigfun.platform.booking.domain.persistence.EventRepository
 import com.crackelets.bigfun.platform.booking.domain.service.EventService;
 import com.crackelets.bigfun.platform.shared.exception.ResourceNotFoundException;
 import com.crackelets.bigfun.platform.shared.exception.ResourceValidationException;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
-import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService {
